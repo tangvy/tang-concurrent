@@ -25,13 +25,18 @@ public class AccountCas extends BaseTestEntity implements Account {
 
     @Override
     public void withdraw(Integer amount) {
+        /*
+        //原始的方式：
         while (true) {
             int prev = balance.get();
             int next = prev - amount;
+            //比较并设置值
             if (balance.compareAndSet(prev, next)) {
                 break;
             }
-        }
+        }*/
+        //balance.getAndAdd(-1*amount);
+        balance.addAndGet(-1*amount);
     }
 
     @Test
